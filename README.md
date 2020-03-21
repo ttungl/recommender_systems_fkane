@@ -9,15 +9,15 @@
 					|				|				
 				user vector 				| 		
 					|				|				
-					|__________ ReLU ______________|
-					 	 ^
-					 	 |
+					|__________ ReLU _______________|
+					 	 	^
+					 	 	|
 					 __________ ReLU ____________
-					 	 ^
-					 	 |
+					 	 	^
+					 	 	|
 					 __________ ReLU ____________	
-					 	 ^
-					 	 |
+					 	 	^
+					 	 	|
 		watch vector  search vector	 geographic  age  gender  ...
 		     ^		 ^
 		     |		 |
