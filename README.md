@@ -5,30 +5,30 @@
 	+ Youtube's candidate generation:
 		```
 			top-N <--- Knn index <---video vectors---- softmax ---> class probabilities
-					^							 ^	
-					|							 |
-				user vector 					 |
-					|							 |
+					^				^	
+					|				|
+				user vector 		|
+					|				|
 					|__________ ReLU ____________|
-								  ^
-								  |
+					 ^
+					 |
 					 __________ ReLU ____________
-					 			  ^
-					 			  |
+					 ^
+					 |
 					 __________ ReLU ____________	
-					 	 		  ^
-					 	 		  |
+					 ^
+					 |
 		watch vector  search vector	 geographic  age  gender  ...
-		     ^				^
-		     |				|
-		  average		 average
+		     ^		 ^
+		     |		 |
+		  average	average
 
-		  |||||..||		 |||||..||
+		  |||||..||	|||||..||
 	   video watches   search tokens		 
 	   ```
 	+ (one) anatomy of a top-N recommender
 
-		
+
 
 
 ## Section 2: Intro to Python
