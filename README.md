@@ -5,19 +5,19 @@
 	+ Youtube's candidate generation:
 		```
 			top-N <--- Knn index <---video vectors---- softmax ---> class probabilities
-					^			^	
-					|			|
-				user vector 					|
-					|			|
+					^				^	
+					|				|
+				user vector 			|
+					|				|
 					|__________ ReLU ____________|
-					 		^
-					 		|
+					 	 ^
+					 	 |
 					 __________ ReLU ____________
-					 ^
-					 |
+					 	 ^
+					 	 |
 					 __________ ReLU ____________	
-					 ^
-					 |
+					 	 ^
+					 	 |
 		watch vector  search vector	 geographic  age  gender  ...
 		     ^		 ^
 		     |		 |
