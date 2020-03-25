@@ -137,15 +137,105 @@
 			+ it penalizes you more when your prediction is way off, and penalizes you less when you are reasonably close. It inflates the penalty for larger errors.
 
 	+ Top-N hit rate - many ways
-	+ Coverage, Diversity, and Novelty
+		+ evaluating top-n recommenders:
+			+ Hit rate: you generate top-n recommendations for all of the users in your test set, if one of top-n recommendations is rated, it's a hit. Thus, hit rate = count of all hits per total users 
+		+ leave-one-out cross validation:
+			+ compute the top-n recommendations for each user in our training data, 
+			+ then intentionally remove one of those items from that user's training data. 
+			+ then test our recommender system's ability to recommend that item that was left out in the top-n results it creates for that user in the testing phase.
+		+ Notes: hit rate with leave-one-out are working better with a very large dataset.
+
+		+ Average reciprocal hit rate (ARHR):
+			+ sum{1..n}(1/rank(i))/users
+			+ it measures our ability to recommend items that actually appeared in a user's top-n highest rated movies, it gives more weight to these hits when they appear near the top of the top-n list.
+
+		+ cumulative hit rate (cHR):
+			+ throw away hits if our predicted rating is below some threshold. The idea is that we shouldn't get credit for recommending items to a user that we think they won't actually enjoy.
+
+		+ rating hit rate (rHR)
+			+ break it down by predicted rating score. The idea is that we recommend movies that they actually liked and breaking down the distribution gives you some sense of how well you're doing in more detail.
+		+ Take-away: RMSE and hit rate are not always related.
+
+	+ Coverage, Diversity, and Novelty Metrics
+		+ Coverage: 
+			+ the percentage of possible recommendations that your system is able to provide.
+				`% of <user,item> pair that can be predicted.`
+			+ Can be important to watch bcos it gives you a sense of how quickly new items in your catalog will start to appear in recommendations. i.e., when a new book comes out on Amazon, it won't appear in recommendations until at least few people buy it. Therefore, establishing patterns with the purchase of other items. Until those patterns exist, that new book will reduce Amazon's coverage metric.
+
+		+ Diversity:
+			+ How broad a variety of items your recommender system is putting in front of people. Low diversity indicates it recommends next books in the series that you've started reading, but doesn't recommend books from different authors, or movies related to what you've read/watched. 
+			+ We can use similarity scores to measure diversity.
+			+ If we look at the similarity scores of every possible pair in a list of top-n recommendations, we can average them to get a measure of how similar the recommended items in the list are to each other, called S.
+			+ Diversity = 1 - S
+				+ S: avg similarity between recommendation pairs.
+
+		+ Novelty:
+			+ mean popularity rank of recommended items.
+
+
+
 	+ Churn, Responsiveness, and A/B Tests
+		+ How often do recommendations change?
+		+ perceived quality: rate your recommendations.
+		+ The results of online A/B tests are the metric matters more than anything. 
+
 	+ Review ways to measure your recommender
 	+ Recommender Metrics
+		+ Surprise package is about making rating predictions, and we need a method to get top-n recommendations out of it. 
 	+ Test Metrics
-	+ Measure the performance of SVD recommender.
+		+ run the test.
+			```
+			Loading movie ratings...
 
+			Computing movie popularity ranks so we can measure novelty later...
+
+			Computing item similarities so we can measure diversity later...
+			Estimating biases using als...
+			Computing the pearson_baseline similarity matrix...
+			Done computing similarity matrix.
+
+			Building recommendation model...
+
+			Computing recommendations...
+
+			Evaluating accuracy of model...
+			RMSE:  0.9033701087151801
+			MAE:  0.6977882196132263
+
+			Evaluating top-10 recommendations...
+			Computing recommendations with leave-one-out...
+			Predict ratings for left-out set...
+			Predict all missing ratings...
+			Compute top 10 recs per user...
+
+			Hit Rate:  0.029806259314456036
+
+			rHR (Hit Rate by Rating value): 
+			3.5 0.017241379310344827
+			4.0 0.0425531914893617
+			4.5 0.020833333333333332
+			5.0 0.06802721088435375
+
+			cHR (Cumulative Hit Rate, rating >= 4):  0.04960835509138381
+
+			ARHR (Average Reciprocal Hit Rank):  0.0111560570576964
+
+			Computing complete recommendations, no hold outs...
+
+			User coverage:  0.9552906110283159 [this is good]
+			Computing the pearson_baseline similarity matrix...
+			Done computing similarity matrix.
+
+			Diversity:  0.9665208258150911 [this is not good, too high]
+
+			Novelty (average popularity rank):  491.5767777960256
+									[this is not good, too high][as long tail in distribution]				
+			```
+	+ Measure the performance of SVD recommender.
+		
 
 ## Section 4: A Recommender Engine Framework 
+
 
 ## Section 5: Content-Based Filtering 
 
