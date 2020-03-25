@@ -117,7 +117,6 @@
 
 					+ Take-away note: Apparently, SVD performs better than KNN in this scenario.
 
-
 ## Section 2: Intro to Python 
 
 ## Section 3: Evaluating Recommender Systems
@@ -232,10 +231,101 @@
 									[this is not good, too high][as long tail in distribution]				
 			```
 	+ Measure the performance of SVD recommender.
-		
 
 ## Section 4: A Recommender Engine Framework 
+	+ Build a recommender engine:
+		+ use `surpriselib` algorithm (base class)
+		+ AlgoBase: SVD, KNNBasic, SVDpp, Custom
 
+	+ Creating a custom algorithm:
+		+ implement an estimate function.
+		```
+		class myOwnAlgorithm(AlgoBase):
+			def __init__(self):
+				AlgoBase.__init__(self)
+
+			def estimate(self, user, item):
+				return 3
+		```
+	+ Building on top of surpriselib:
+		+ create a new class, EvaluatedAlgorithm(AlgoBase)
+			+ algorithm: AlgoBase
+			+ Evaluate(EvaluationData)
+			+ RecommenderMetrics
+			+ EvaluationData(Dataset):
+				+ GetTrainSet()
+				+ GetTestSet()
+			+ algorithm bake-offs
+				+ Evaluator(DataSet):
+					+ AddAlgorithm(algorithm)
+					+ Evaluate()
+					+ dataset: EvaluatedDataSet
+					+ algorithms: EvaluatedAlgorithm[]
+	+ Implementation:
+		```
+		# load up common dataset for the recommender algos.
+		(evaluationData, rankings) = LoadMovieLensData()
+
+		# construct an evaluator to evaluate them
+		evaluator = Evaluator(evaluationData, rankings)
+
+		# Throw in an SVD recommender.
+		SVDAlgo = SVD(random_state=10)
+		evaluator.AddAlgorithm(SVDAlgorithm, "SVD")
+
+		# Just make random recommendations
+		Random = NormalPredictor()
+		evaluator.AddAlgorithm(Random, "Random")
+
+		# Evaluate
+		evaluator.Evaluate(True)
+
+		``` 
+
+	+ Code:
+		```
+		Loading movie ratings...
+
+		Computing movie popularity ranks so we can measure novelty later...
+		Estimating biases using als...
+		Computing the cosine similarity matrix...
+		Done computing similarity matrix.
+		Evaluating  SVD ...
+		Evaluating accuracy...
+		Evaluating top-N with leave-one-out...
+		Computing hit-rate and rank metrics...
+		Computing recommendations with full data set...
+		Analyzing coverage, diversity, and novelty...
+		Computing the cosine similarity matrix...
+		Done computing similarity matrix.
+		Analysis complete.
+		Evaluating  Random ...
+		Evaluating accuracy...
+		Evaluating top-N with leave-one-out...
+		Computing hit-rate and rank metrics...
+		Computing recommendations with full data set...
+		Analyzing coverage, diversity, and novelty...
+		Computing the cosine similarity matrix...
+		Done computing similarity matrix.
+		Analysis complete.
+
+
+		Algorithm  RMSE       MAE        HR         cHR        ARHR       Coverage   Diversity  Novelty   
+		SVD        0.9034     0.6978     0.0298     0.0298     0.0112     0.9553     0.0445     491.5768  
+		Random     1.4385     1.1478     0.0089     0.0089     0.0015     1.0000     0.0719     557.8365  
+
+		Legend:
+
+		RMSE:      Root Mean Squared Error. Lower values mean better accuracy.
+		MAE:       Mean Absolute Error. Lower values mean better accuracy.
+		HR:        Hit Rate; how often we are able to recommend a left-out rating. Higher is better.
+		cHR:       Cumulative Hit Rate; hit rate, confined to ratings above a certain threshold. Higher is better.
+		ARHR:      Average Reciprocal Hit Rank - Hit rate that takes the ranking into account. Higher is better.
+		Coverage:  Ratio of users for whom recommendations above a certain threshold exist. Higher is better.
+		Diversity: 1-S, where S is the average similarity score between every possible pair of recommendations
+		           for a given user. Higher means more diverse.
+		Novelty:   Average popularity rank of recommended items. Higher means more novel.
+		```
 
 ## Section 5: Content-Based Filtering 
 
