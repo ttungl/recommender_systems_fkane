@@ -88,6 +88,7 @@
 				+ Compare the SVD algorithm to KNNBasic:
 					+ test MAE score: SVD(0.2731) KNN(0.6871)
 					+ test RSME score: SVD(0.3340) KNN(0.9138)
+
 					+ SVD (user 81)
 						We recommend:
 							Gladiator (1992)
@@ -114,13 +115,27 @@
 							Amazing Grace (2006)
 							Unvanquished, The (Aparajito) (1957)
 
+					+ Take-away note: Apparently, SVD performs better than KNN in this scenario.
+
 
 ## Section 2: Intro to Python 
 
 ## Section 3: Evaluating Recommender Systems
 
 	+ Train/test/crossvalidation
+		+ full data -> train and test
+		+ trainset -> machine learning -> fit 
+		+ use trained model for testing on test data.
+
+		+ K-fold cross validation
+			+ Bagging: full data -> fold i-th -> ML -> measure accuracy -> take average 
+
 	+ Accurate metrics RMSE/MAE
+		+ MAE: lower is better
+			sum{1..n}|yi - xi|/n
+		+ RMSE: lower is better
+			+ it penalizes you more when your prediction is way off, and penalizes you less when you are reasonably close. It inflates the penalty for larger errors.
+
 	+ Top-N hit rate - many ways
 	+ Coverage, Diversity, and Novelty
 	+ Churn, Responsiveness, and A/B Tests
@@ -128,7 +143,7 @@
 	+ Recommender Metrics
 	+ Test Metrics
 	+ Measure the performance of SVD recommender.
-	 
+
 
 ## Section 4: A Recommender Engine Framework 
 
