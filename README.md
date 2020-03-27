@@ -329,6 +329,69 @@
 
 ## Section 5: Content-Based Filtering 
 
+	+ Cosin similarity:
+		+ Assume that movie1 vs movie2 form an angle of 45 degree, so cosine helps to identify if cosine(angle)=0 (cosine(90)) means no similar at all, and cosine(angle)=1 (cosine(0)) means totally the same thing.  
+
+
+	+ multi-dimensional space:
+		+ convert genres to dimensions (i.e. multiple one-hot encoding).
+		+ compute multi-dimensional cosines:
+			```
+			CosSim(x, y) = sum{1..n} xi*yi / (sqrt(sum{1..n}xi^2) * sqrt(sum{1..n}yi^2))
+			```
+			+ code:
+			```
+			def computeCosineSimilarity(self, movie1, movie2, genres):
+				genres1 = genres[movie1]
+				genres2 = genres[movie2]
+				sumxx, sumxy, sumyy = 0, 0, 0
+				# go through all genres.
+				for i in range(len(genres1)):
+					x, y = genres1[i], genres2[i]
+					sumxx += x*x
+					sumyy += y*y
+					sumxy += x*y
+				return sumxy / math.sqrt(sumxx * sumyy)
+			```
+		+ compute time similarity:
+			```
+			def computeYearSimilarity(self, movie1, movie2, years):
+				diff = abs(years[movie1] - years[movie2])
+				sim = math.exp(-diff/10.0)
+				return sim
+			```
+		+ K-nearest-neighbors:
+			+ similarity scores between this movie and all others the user rated 
+				=> sort top 40 nearest movies 
+				=> weighted average (weighting them by the rating the user gave them)
+				=> rating prediction.
+			+ knn code:
+			```
+			# Build up similarity scores between this item and everything the user rated.
+			neighbors = []
+			for rating in self.trainset.ur[u]:
+				genreSimilarity = self.similarities[i, rating[0]]
+				neighbors.append((genreSimilarity, rating[1]))
+
+			# Extract the top-k most-similar ratings
+			k_neighbors = heapq.nlargest(self.k, neighbors, key=lambda t: t[0])
+
+			# Compute average sim score of K neighbors weighted by user ratings.
+			simTotal = weightedSum = 0
+			for (simScore, rating) in k_neighbors:
+				if (simScore > 0):
+					simTotal += simScore
+					weightedSum += simScore * rating
+			if (simTotal == 0):
+				raise PredictionImpossible('No neighbors')
+
+			predictedRating = weightedSum/simTotal
+			return predictedRating
+			```
+
+	+ Producing and evaluating content-based filtering movies recommendation.
+		+ 
+
 ## Section 6: Neighborhood-Based Collaborative Filtering 
 
 ## Section 7: Matrix Factorization Methods 
