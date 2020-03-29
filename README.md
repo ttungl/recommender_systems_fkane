@@ -390,7 +390,6 @@
 			```
 
 	+ Producing and evaluating content-based filtering movies recommendation.
-		+ 
 
 ## Section 6: Neighborhood-Based Collaborative Filtering 
 
