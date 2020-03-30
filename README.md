@@ -391,6 +391,61 @@
 
 	+ Producing and evaluating content-based filtering movies recommendation.
 
+		+ `getPopularityRanks`
+			Algorithm  RMSE       MAE       
+			contentKNN 0.9375     0.7263    
+			Random     1.4385     1.1478    
+
+			Legend:
+
+			RMSE:      Root Mean Squared Error. Lower values mean better accuracy.
+			MAE:       Mean Absolute Error. Lower values mean better accuracy.
+
+			Using recommender  contentKNN
+
+				We recommend:
+				Presidio, The (1988) 3.841314676872932
+				Femme Nikita, La (Nikita) (1990) 3.839613347087336
+				Wyatt Earp (1994) 3.8125061475551796
+				Shooter, The (1997) 3.8125061475551796
+				Bad Girls (1994) 3.8125061475551796
+				The Hateful Eight (2015) 3.812506147555179
+				True Grit (2010) 3.812506147555179
+				Open Range (2003) 3.812506147555179
+				Big Easy, The (1987) 3.7835412549266985
+				Point Break (1991) 3.764158410102279
+
+			Using recommender  Random
+
+				We recommend:
+				Sleepers (1996) 5
+				Beavis and Butt-Head Do America (1996) 5
+				Fear and Loathing in Las Vegas (1998) 5
+				Happiness (1998) 5
+				Summer of Sam (1999) 5
+				Bowling for Columbine (2002) 5
+				Babe (1995) 5
+				Birdcage, The (1996) 5
+				Carlito's Way (1993) 5
+				Wizard of Oz, The (1939) 5
+
+		+ `mixed years and genres`
+			Algorithm  RMSE       MAE       
+			contentKNN 0.9441     0.7310    
+			Random     1.4385     1.1478    
+			--
+			Using recommender  contentKNN
+				True Grit (2010) 3.81250614755518
+				Open Range (2003) 3.81250614755518
+				The Hateful Eight (2015) 3.8125061475551796
+				Wyatt Earp (1994) 3.8125061475551796
+				Shooter, The (1997) 3.8125061475551796
+				Bad Girls (1994) 3.8125061475551796
+				Romeo Must Die (2000) 3.771364493375906
+				Femme Nikita, La (Nikita) (1990) 3.7678571120506548
+				RoboCop (1987) 3.7594365328860415
+				Die Hard (1988) 3.75840413236323
+
 ## Section 6: Neighborhood-Based Collaborative Filtering 
 
 ## Section 7: Matrix Factorization Methods 
