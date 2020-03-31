@@ -517,9 +517,9 @@
 			+ Think of it as a 2D array with movies on one axis and users on the other, and rating values in each cell. 
 			```
 				Indiana Jones	Star Wars	Empires		Incred.		Casa
-			Bob		4			5											
-			Ted 													1
-			Ann 				5 				5 			5 
+			Bob	 4	5 					
+			Ted 						1
+			Ann 		5		5		
 			```
 
 		+ 
