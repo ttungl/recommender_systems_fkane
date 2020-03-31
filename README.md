@@ -447,6 +447,103 @@
 				Die Hard (1988) 3.75840413236323
 
 ## Section 6: Neighborhood-Based Collaborative Filtering 
+	+ Finding other people like you and recommending stuff they liked.
+	Recommending stuff based on the things people liked that you haven't seen yet. That's why we call it collaborative filtering.
+	It's recommending stuff based on other people's collaborative behavior.
+	+ One anatomu of top-N recommender.
+		```
+		individual interests --> candidate generation <--> items similarity
+										|
+										candidate ranking
+										|
+										filtering
+										|
+										data output
+		```
+
+	+ First step in collaborative filtering is finding ways to measure similarity.
+		+ Cosine similarity
+		+ Big Challenge on the behavior data is the sparsity of the data. It's tough for collaborative filtering to work well unless you have a lot of user behavior data. We can't compute cosine similarity of two people who have nothing in common, or between two items when they have no people in common. That's why collaborative filtering at Netflix and Amazon working well because they have millions of users so they have enough data to generate meaningful relations in spite of the data sparsity.
+
+		+ Sparsity is also challenging as you don't want to waste time storing and processing all of that missing data, so we use like sparse arrays that avoid storing all that empty space in this matrix.
+		
+		+ The quantity and quality of the data that you have to work with is often way more important than the algorithm that you choose. It doesn't matter what method you use to measure similarity if you don't have enough data to begin with.
+
+		+ Adjusted cosine:
+			```
+			CosSim(x,y) = sum{i}((xi-x\)(yi-y\)) / sqrt(sum{i}(xi - x\)^2) * sqrt(sum{i}(yi - y\)^2)
+			```
+			
+			CosSim attempts to normalize these differences. Instead of measuring similarities between people based on their raw rating values, we instead measure similarity based on the difference between a user rating for an item and their average rating for all items.
+			x\: means the average of all user x's ratings.
+			
+			Notes: you can get only a meaningful average or a baseline of an individuals ratings if they have rated a lot of stuff for you to take the average of in the first place.
+		+ item-based pearson similarity:
+			```
+			CosSim(x,y) = sum{i}((xi - I\)(yi - I\))/sqrt(sum{i}(xi - I\)^2) * sqrt(sum{i}(yi-I\)^2)
+			```
+			This method looks at the difference between ratings and the average of all users for that given item. 
+			
+			I\: the average rating of the item across all users.
+
+			Pearson similarity measures similarity between people by how much they diverge from the average person's behavior. Imagine a film that most peolpe love like Star Wars. People who hate it are going to get a very strong similarity score from Pearson's similarity because they share opinions that are not mainstream.
+
+		+ Spearman rank correlation:
+			+ Pearson similarity based on ranks, not ratings as in original pearson.
+
+			+ Main advantage of this method is that it can deal with ordinal data effectively. For example, you had a rating scale where the difference in meaning between different rating values were not the same. It's not usually used in industry.
+
+		+ Mean squared difference
+			``` MSD(x,y) = sum{i in Ixy} (xi - yi)^2 / |Ixy| ```
+				Notes: 
+					numerator: sum up for every item i of difference of squared btw users x and y. 
+
+					denominator: Ixy: the number of items each user had in common
+					
+					we summed across to get the mean.
+
+			``` MSDsim(x,y) = 1/MSD(x,y) + 1```
+					we measure how similar they are (not how different), to do that, we take the inverse of MSD and plus 1 is to avoid zero when two users have identical behavior.
+
+
+		+ Jaccard similarity:
+
+
+	+ User-based collaborative filtering
+		+ recommend stuff they liked that you haven't seen yet.
+
+		+ First step is to collect the data we need.
+			+ A table of all of the ratings for everyone in our system.
+			+ Think of it as a 2D array with movies on one axis and users on the other, and rating values in each cell. 
+			```
+				Indiana Jones	Star Wars	Empires		Incred.		Casa
+			Bob		4			5											
+			Ted 													1
+			Ann 				5 				5 			5 
+			```
+
+		+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Section 7: Matrix Factorization Methods 
 
