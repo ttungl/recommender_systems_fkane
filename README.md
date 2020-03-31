@@ -521,8 +521,14 @@
 			Ted 									1
 			Ann 					5		5		
 			```
-
-		+ 
+			=>
+			```
+				Bob   Ted   Ann
+			Bob 1   0   1
+			Ted 0   1   0
+			Ann 1   0   1
+			```
+			
 
 
 
