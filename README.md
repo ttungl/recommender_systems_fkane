@@ -566,7 +566,7 @@
 				Usual Suspects, The (1995) 163.79259985557516
 				Star Wars: Episode VI - Return of the Jedi (1983) 163.54809920010618
 
-			
+
 
 	+ Item-based collaborative filtering 
 			+ 2D matrix mapping similarity score is between every item in your catalog will be much smaller than a 2D matrix mapping similarity between every user that visits your site. It makes faster to compute when dealing with massive systems.
@@ -614,22 +614,7 @@
 						Joe's Apartment (1996) 16.804698282071367
 						Lost & Found (1999) 16.78956315445952
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		
 
 
 ## Section 7: Matrix Factorization Methods 
