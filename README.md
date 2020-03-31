@@ -521,17 +521,98 @@
 			Ted 									1
 			Ann 					5		5		
 			```
-			=>
+			=>cosine similarity.
 			```
 			   Bob  Ted  Ann
 			Bob 1   0   1
 			Ted 0   1   0
 			Ann 1   0   1
 			```
+			Notes: 100% similar doesn't mean they like the same thing, it could mean they hate the same thing. 1 and 0 in table show we have little data to work with. If we have large data, the number will be more meaningful.
+
+		+ Process:
+			+ user -> item rating matrix
+			+ user -> user similarity matrix
+			+ look up similar users
+			+ candidate generation
+			+ candidate scoring
+			+ candidate filtering
+
+		+ run code:
+			```
+				Inception (2010) 3.3
+				Star Wars: Episode V - The Empire Strikes Back (1980) 2.4
+				Bourne Identity, The (1988) 2.0
+				Crouching Tiger, Hidden Dragon (Wo hu cang long) (2000) 2.0
+				Dark Knight, The (2008) 2.0
+				Good, the Bad and the Ugly, The (Buono, il brutto, il cattivo, Il) (1966) 1.9
+				Departed, The (2006) 1.9
+				Dark Knight Rises, The (2012) 1.9
+				Back to the Future (1985) 1.9
+				Gravity (2013) 1.8
+				Fight Club (1999) 1.8
+			```
+		+ Modifications:
+			+ `rating > 0.95`
+				Star Wars: Episode IV - A New Hope (1977) 228.48498846248853
+				Matrix, The (1999) 203.5299981419994
+				Star Wars: Episode V - The Empire Strikes Back (1980) 185.7852060377671
+				Toy Story (1995) 177.69199360501636
+				Fargo (1996) 176.92324562879384
+				Raiders of the Lost Ark (Indiana Jones and the Raiders of the Lost Ark) (1981) 172.37282124063051
+				American Beauty (1999) 170.08491076233042
+				Back to the Future (1985) 168.63039437454358
+				Godfather, The (1972) 164.6732633306926
+				Usual Suspects, The (1995) 163.79259985557516
+				Star Wars: Episode VI - Return of the Jedi (1983) 163.54809920010618
+
 			
 
+	+ Item-based collaborative filtering 
+			+ 2D matrix mapping similarity score is between every item in your catalog will be much smaller than a 2D matrix mapping similarity between every user that visits your site. It makes faster to compute when dealing with massive systems.
 
+			+ compute cossim between two items.
+			```
+				James Dean Story, The (1957) 10.0
+				Get Real (1998) 9.987241120712646
+				Kiss of Death (1995) 9.966881877751941
+				Set It Off (1996) 9.963732215657119
+				How Green Was My Valley (1941) 9.943984081065269
+				Amos & Andrew (1993) 9.93973694500253
+				My Crazy Life (Mi vida loca) (1993) 9.938290487546041
+				Grace of My Heart (1996) 9.926255896645218
+				Fanny and Alexander (Fanny och Alexander) (1982) 9.925699671455906
+				Wild Reeds (Les roseaux sauvages) (1994) 9.916226404418774
+				Edge of Seventeen (1998) 9.913028764691676
+			```
 
+			+ Modifications:
+				+ Build recommendation candidates from items above a certain rating or similarity threshold, instead of the top 10.
+					+ `score >= 0.5`
+						Tender Mercies (1983) 66.00517680033703
+						Crucible, The (1996) 65.85413695486129
+						The Falcon and the Snowman (1985) 65.75879125610763
+						Scent of a Woman (1992) 65.70507335169201
+						Rocky II (1979) 65.7038806173855
+						Queen Margot (Reine Margot, La) (1994) 65.62189595122997
+						True Crime (1999) 65.60014950711003
+						Seventh Seal, The (Sjunde inseglet, Det) (1957) 65.59691475660786
+						Night Shift (1982) 65.57493667740741
+						Young Sherlock Holmes (1985) 65.5367919327825
+						Walk in the Clouds, A (1995) 65.52503694150758
+
+					+ `rating > 4.0`
+						Kiss of Death (1995) 16.910437073265502
+						Amos & Andrew (1993) 16.861270021975354
+						Edge of Seventeen (1998) 16.853845983977223
+						Get Real (1998) 16.840092759084882
+						Grace of My Heart (1996) 16.83866418909583
+						Relax... It's Just Sex (1998) 16.825893097731395
+						My Crazy Life (Mi vida loca) (1993) 16.825163372963015
+						Set It Off (1996) 16.820045947032426
+						Bean (1997) 16.81043113102984
+						Joe's Apartment (1996) 16.804698282071367
+						Lost & Found (1999) 16.78956315445952
 
 
 
