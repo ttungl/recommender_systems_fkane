@@ -614,8 +614,27 @@
 						Joe's Apartment (1996) 16.804698282071367
 						Lost & Found (1999) 16.78956315445952
 
-		
+	+ Evaluate the user-based CF:
+	+ Measure the hit-rate of item-based collaborative filtering.
+		+ Hit rate: you generate top-n recommendations for all of the items in your test set, if one of top-n recommendations is rated, it's a hit. Thus, 
+			```
+			hit rate = count of all hits (rated in topNrec) per total items.
+			```
+		+ Notes: our hit-rate from item-based collaborative filtering is 0.5%, compared to 5.5% for user-based. It's hard to evaluate the recommender systems offline, especially when you're using historical, smaller datasets to test with. If we were to decide on an approach based on the results, we would conclude that user-based collaborative filtering is far superior and reject the item-based approach. But if we were to test both algorithms on real-world people using real-world data in an A/B test, the results could end up being very different.
+			
+		+ Evaluate Result: HR `0.005961251862891207`
 
+	+ KNN recommenders.
+		+ revisit RecSys based on rating predictions. In this system, we generate recommendation candidates by predicting the ratings
+		```
+		candidate generation <--> rating predictions 
+		|
+		candidate ranking
+		|
+		filtering
+		|
+		output
+		```
 
 ## Section 7: Matrix Factorization Methods 
 
