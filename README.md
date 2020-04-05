@@ -626,17 +626,115 @@
 
 	+ KNN recommenders.
 		+ revisit RecSys based on rating predictions. In this system, we generate recommendation candidates by predicting the ratings
-		```
-		candidate generation <--> rating predictions 
-		|
-		candidate ranking
-		|
-		filtering
-		|
-		output
-		```
+			```
+			candidate generation <--> rating predictions 
+			|
+			candidate ranking
+			|
+			filtering
+			|
+			output
+			```
+		+ user-based KNN
+			```
+			find the k most similar users who rated this item
+			|
+			compute mean similar score weighted by ratings
+			|
+			rating prediction
+			```
+		+ item-based KNN
+			```
+			find the k most similar items also rated by this user
+			|
+			compute mean similar score weighted by ratings
+			|
+			rating prediction
+			```
+		+ KNN-bake-off
+			```
+				Algorithm  RMSE       MAE       
+				User KNN   0.9961     0.7711    
+				Item KNN   0.9995     0.7798    
+				Random     1.4385     1.1478    
+
+				Legend:
+
+				RMSE:      Root Mean Squared Error. Lower values mean better accuracy.
+				MAE:       Mean Absolute Error. Lower values mean better accuracy.
+
+				Using recommender  User KNN
+
+				Building recommendation model...
+				Computing the cosine similarity matrix...
+				Done computing similarity matrix.
+				Computing recommendations...
+
+				We recommend:
+				One Magic Christmas (1985) 5
+				Step Into Liquid (2002) 5
+				Art of War, The (2000) 5
+				Taste of Cherry (Ta'm e guilass) (1997) 5
+				King Is Alive, The (2000) 5
+				Innocence (2000) 5
+				MaelstrÃ¶m (2000) 5
+				Faust (1926) 5
+				Seconds (1966) 5
+				Amazing Grace (2006) 5
+
+				Using recommender  Item KNN
+
+				Building recommendation model...
+				Computing the cosine similarity matrix...
+				Done computing similarity matrix.
+				Computing recommendations...
+
+				We recommend:
+				Life in a Day (2011) 5
+				Under Suspicion (2000) 5
+				Asterix and the Gauls (AstÃ©rix le Gaulois) (1967) 5
+				Find Me Guilty (2006) 5
+				Elementary Particles, The (Elementarteilchen) (2006) 5
+				Asterix and the Vikings (AstÃ©rix et les Vikings) (2006) 5
+				From the Sky Down (2011) 5
+				Vive L'Amour (Ai qing wan sui) (1994) 5
+				Vagabond (Sans toit ni loi) (1985) 5
+				Ariel (1988) 5
+
+				Using recommender  Random
+
+				Building recommendation model...
+				Computing recommendations...
+
+				We recommend:
+				Sleepers (1996) 5
+				Beavis and Butt-Head Do America (1996) 5
+				Fear and Loathing in Las Vegas (1998) 5
+				Happiness (1998) 5
+				Summer of Sam (1999) 5
+				Bowling for Columbine (2002) 5
+				Babe (1995) 5
+				Birdcage, The (1996) 5
+				Carlito's Way (1993) 5
+				Wizard of Oz, The (1939) 5
+			```
+		+ Paper 2017 RecSys: Translation-based recommendation (Ruining-He)
 
 ## Section 7: Matrix Factorization Methods 
+	+ matrix factorization: the general idea is to describe users and movies as combinations of different amounts of each feature. For example, Bob is active as being 80% an action fan and 20% a comedy fan. We'd then know to match him up with movies.
+
+	+ PCA (see explain from Statquest)
+		+ Dimensionality reduction problem 
+		+ Eigenvectors are principle components.
+
+		
+	+ Singular Value Decomposition
+	+ Running SVD and SVD++ and improve it.
+	+ Sparse Linear Methods
+
+
+
+
 
 ## Section 8: Intro to Deep Learning 
 
