@@ -718,22 +718,225 @@
 				Carlito's Way (1993) 5
 				Wizard of Oz, The (1939) 5
 			```
+		+ KNN series:
+			```
+				Algorithm  RMSE       MAE       
+				User KNNBasic 0.9961     0.7711    
+				Item KNNBasic 0.9995     0.7798    
+				User KNNWithZScore 0.9232     0.7056    
+				Item KNNWithZScore 0.9347     0.7169    
+				User KNNWithMeans 0.9261     0.7119    
+				Item KNNWithMeans 0.9306     0.7157    
+				User KNNBaseline 0.9037     0.6961    
+				Item KNNBaseline 0.9129     0.7071    
+				Random     1.4385     1.1478    
+
+				Legend:
+
+				RMSE:      Root Mean Squared Error. Lower values mean better accuracy.
+				MAE:       Mean Absolute Error. Lower values mean better accuracy.
+
+				Using recommender  User KNNBasic
+
+				Building recommendation model...
+				Computing the cosine similarity matrix...
+				Done computing similarity matrix.
+				Computing recommendations...
+
+				We recommend:
+				One Magic Christmas (1985) 5
+				Step Into Liquid (2002) 5
+				Art of War, The (2000) 5
+				Taste of Cherry (Ta'm e guilass) (1997) 5
+				King Is Alive, The (2000) 5
+				Innocence (2000) 5
+				MaelstrÃ¶m (2000) 5
+				Faust (1926) 5
+				Seconds (1966) 5
+				Amazing Grace (2006) 5
+
+				Using recommender  Item KNNBasic
+
+				Building recommendation model...
+				Computing the cosine similarity matrix...
+				Done computing similarity matrix.
+				Computing recommendations...
+
+				We recommend:
+				Life in a Day (2011) 5
+				Under Suspicion (2000) 5
+				Asterix and the Gauls (AstÃ©rix le Gaulois) (1967) 5
+				Find Me Guilty (2006) 5
+				Elementary Particles, The (Elementarteilchen) (2006) 5
+				Asterix and the Vikings (AstÃ©rix et les Vikings) (2006) 5
+				From the Sky Down (2011) 5
+				Vive L'Amour (Ai qing wan sui) (1994) 5
+				Vagabond (Sans toit ni loi) (1985) 5
+				Ariel (1988) 5
+
+				Using recommender  User KNNWithZScore
+
+				Building recommendation model...
+				Computing the cosine similarity matrix...
+				Done computing similarity matrix.
+				Computing recommendations...
+
+				We recommend:
+				Art of War, The (2000) 5
+				Taste of Cherry (Ta'm e guilass) (1997) 5
+				King Is Alive, The (2000) 5
+				Innocence (2000) 5
+				MaelstrÃ¶m (2000) 5
+				I Know That Voice (2013) 5
+				Undertow (2004) 5
+				Phantom of the Paradise (1974) 5
+				Sgt. Pepper's Lonely Hearts Club Band (1978) 5
+				Rory O'Shea Was Here (Inside I'm Dancing) (2004) 5
+
+				Using recommender  Item KNNWithZScore
+
+				Building recommendation model...
+				Computing the cosine similarity matrix...
+				Done computing similarity matrix.
+				Computing recommendations...
+
+				We recommend:
+				One Magic Christmas (1985) 5
+				Taste of Cherry (Ta'm e guilass) (1997) 5
+				King Is Alive, The (2000) 5
+				Innocence (2000) 5
+				MaelstrÃ¶m (2000) 5
+				Amazing Grace (2006) 5
+				Unvanquished, The (Aparajito) (1957) 5
+				Undertow (2004) 5
+				Big Town, The (1987) 5
+				Masquerade (1988) 5
+
+				Using recommender  User KNNWithMeans
+
+				Building recommendation model...
+				Computing the cosine similarity matrix...
+				Done computing similarity matrix.
+				Computing recommendations...
+
+				We recommend:
+				Art of War, The (2000) 5
+				King Is Alive, The (2000) 5
+				Innocence (2000) 5
+				MaelstrÃ¶m (2000) 5
+				I Know That Voice (2013) 5
+				Am Ende eiens viel zu kurzen Tages (Death of a superhero) (2011) 5
+				Cool as Ice (1991) 5
+				Looney, Looney, Looney Bugs Bunny Movie, The (1981) 5
+				Vampyros Lesbos (Vampiras, Las) (1971) 5
+				Dylan Moran: Monster (2004) 5
+
+				Using recommender  Item KNNWithMeans
+
+				Building recommendation model...
+				Computing the cosine similarity matrix...
+				Done computing similarity matrix.
+				Computing recommendations...
+
+				We recommend:
+				One Magic Christmas (1985) 5
+				Taste of Cherry (Ta'm e guilass) (1997) 5
+				King Is Alive, The (2000) 5
+				Innocence (2000) 5
+				MaelstrÃ¶m (2000) 5
+				Amazing Grace (2006) 5
+				Unvanquished, The (Aparajito) (1957) 5
+				Undertow (2004) 5
+				Soul Kitchen (2009) 5
+				Big Town, The (1987) 5
+
+				Using recommender  User KNNBaseline
+
+				Building recommendation model...
+				Estimating biases using als...
+				Computing the cosine similarity matrix...
+				Done computing similarity matrix.
+				Computing recommendations...
+
+				We recommend:
+				Art of War, The (2000) 5
+				Taste of Cherry (Ta'm e guilass) (1997) 5
+				King Is Alive, The (2000) 5
+				Innocence (2000) 5
+				MaelstrÃ¶m (2000) 5
+				I Know That Voice (2013) 5
+				Amazing Grace (2006) 5
+				Shogun Assassin (1980) 5
+				Trailer Park Boys (1999) 5
+				Am Ende eiens viel zu kurzen Tages (Death of a superhero) (2011) 5
+
+				Using recommender  Item KNNBaseline
+
+				Building recommendation model...
+				Estimating biases using als...
+				Computing the cosine similarity matrix...
+				Done computing similarity matrix.
+				Computing recommendations...
+
+				We recommend:
+				Digimon: The Movie (2000) 5
+				PokÃ©mon 3: The Movie (2001) 5
+				City of Industry (1997) 4.931009757211678
+				Amityville Curse, The (1990) 4.67989042436559
+				Grand, The (2007) 4.66854054447099
+				Tracey Fragments, The (2007) 4.66854054447099
+				T-Rex: Back to the Cretaceous (1998) 4.623402803593322
+				Above the Law (1988) 4.614678973240254
+				Enforcer, The (1976) 4.614678973240254
+				Kirikou and the Sorceress (Kirikou et la sorciÃ¨re) (1998) 4.51461362775696
+
+				Using recommender  Random
+
+				Building recommendation model...
+				Computing recommendations...
+
+				We recommend:
+				Sleepers (1996) 5
+				Beavis and Butt-Head Do America (1996) 5
+				Fear and Loathing in Las Vegas (1998) 5
+				Happiness (1998) 5
+				Summer of Sam (1999) 5
+				Bowling for Columbine (2002) 5
+				Babe (1995) 5
+				Birdcage, The (1996) 5
+				Carlito's Way (1993) 5
+				Wizard of Oz, The (1939) 5
+			```
 		+ Paper 2017 RecSys: Translation-based recommendation (Ruining-He)
 
 ## Section 7: Matrix Factorization Methods 
 	+ matrix factorization: the general idea is to describe users and movies as combinations of different amounts of each feature. For example, Bob is active as being 80% an action fan and 20% a comedy fan. We'd then know to match him up with movies.
 
 	+ PCA (see explain from Statquest)
-		+ Dimensionality reduction problem 
+		+ Dimensionality reduction in order to accurately describe a movie.  
 		+ Eigenvectors are principle components.
-
-		
+		+ PCA on movie ratings
 	+ Singular Value Decomposition
 	+ Running SVD and SVD++ and improve it.
-	+ Sparse Linear Methods
+		+ Downside is with categorical data, have to prepare data to work with it.
+		+ Probabilistic Latent Semantic Analysis (PLSA) is promising. You can use it to extract latent features from content itself. 
+		+ Tuning svd:
+			```
+			print("Searching for best parameters...")
+			param_grid = {'n_epochs': [20,30], 'lr_all':[0.005,0.010], 'n_factors':[50,100]}
+			gs = GridSearchCV(SVD, param_grid, measures=['rmse','mae'], cv=3)
+			gs.fit(evaluationData)
+
+			# best RMSE score
+			print("Best RMSE score attained: ", gs.best_score['rmse'])
+			params = gs.best_params['rmse']
+			SVDtuned = SVD(n_epochs = params['n_epochs'], lr_all=params['lr_all'], n_factors=params['n_factors'])
 
 
 
+			```
+	+ Sparse Linear Methods (SLIM)
+		+ Paper: SLIM sparse linear methods for top-N recommender systems.
 
 
 ## Section 8: Intro to Deep Learning 
