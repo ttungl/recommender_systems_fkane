@@ -939,9 +939,136 @@
 		+ Paper: SLIM sparse linear methods for top-N recommender systems.
 
 
-## Section 8: Intro to Deep Learning 
+## Section 8: Intro to Deep Learning
+	+ Autodiff: is what tensorflow uses under the hood to implement its gradient descent.
+		+ As the computer calculates the partial derivatives of the loss function, it tweaked in scalar form.
+			C(y,w,x,b) = y - max(0, w*x+b)
+
+		+ Because autodiff can only calculate the partial derivative of an expression on a certain point, we have to assign initial values to each variables.
+			
+		+ Then calculate the partial derivatives of each connection between operations/edges. 
+			+ from w5 = w1 * w2 => d_w5/ d_w1 = w2
+			+ from w6 = w5 + w3 => d_w6/d_w5 = 1
+			+ from w7 = max(0,w6) => d_max(0,w6)/d_w6= 1 if x>0 else 0
+			+ from w8 = w4 - w7 => d_w8/d_w7 = (d_w4 - d_w7)/d_w7 = -1 and d_w8/d_w4 = 1.
+			+ from z = w8 => d_z/d_w8 = 1
+
+		+ The max(0, x) piece-wise function converts all negative values to zero, and keeps all positive values as they are. The graph is like ReLU slope.
+
+		+ Now we calculate the partials with respect of the weights. We simply multiply up the edges.
+			d_z/d_w1 = (d_z/d_w8) * (d_w8/d_w7) * (d_w7/d_w6) * (d_w6/d_w5) * (d_w5/d_w1) = 1*(-1)*(1 if x>0 else 0)* 1 * w2 = (1 if x>0 else 0)
+
+		+ Gradient descent requires knowledge of the gradient from your cost function (MSE)
+		+ Mathematically, we need the first partial derivatives of all the inputs.
+			+ This is inefficient if you just throw calculus at the problem.
+		+ Reverse-mode autodiff to the rescue.
+			+ Optimized for many inputs + few outputs (like a neuron)
+			+ Computes all partial derivatives in outputs + 1 graph traversals.
+			+ Still fundamentally a calculus trick.
+			+ tensorflow used.
+
+	+ Softmax:
+		+ used for classification
+			+ Given a score for each class
+			+ It produces a probability of each class
+			+ The class with the highest probability is the answer you get.
+			+ h_theta(x) = 1 / (1 + exp(-theta^transpose * x))
+				+ x is a vector of input values.
+				+ theta is a vector of weights.
+	+ In review:
+		+ Gradient descent is an algorithm for minimizing error over multiple steps. In other word, it aims to minimize the loss through tweaking the weights and biases.
+		+ Autodiff is a calculus trick for finding the gradients in gradient descent.
+		+ Softmax is a function for choosing the most probable classification given several input values.
+
 
 ## Section 9: Deep Learning for Recommender Systems
+	+ RBM's for recsys
+		+ contrastive divergence
+			+ It samples probability distribution during training using Gibbs sampler. We only train it on the ratings that actually exist, but re-use the resulting weights and biases across other users to fill in the missing ratings we want to predict.
+	+ Algorithm result:
+		```
+		Algorithm  RMSE       MAE        HR         cHR        ARHR       Coverage   Diversity  Novelty   
+		RBM        1.3257     1.1337     0.0000     0.0000     0.0000     0.0000     0.7505     4597.7419 
+		Random     1.4366     1.1468     0.0149     0.0149     0.0041     1.0000     0.0721     552.4610  
+
+		Legend:
+
+		RMSE:      Root Mean Squared Error. Lower values mean better accuracy.
+		MAE:       Mean Absolute Error. Lower values mean better accuracy.
+		HR:        Hit Rate; how often we are able to recommend a left-out rating. Higher is better.
+		cHR:       Cumulative Hit Rate; hit rate, confined to ratings above a certain threshold. Higher is better.
+		ARHR:      Average Reciprocal Hit Rank - Hit rate that takes the ranking into account. Higher is better.
+		Coverage:  Ratio of users for whom recommendations above a certain threshold exist. Higher is better.
+		Diversity: 1-S, where S is the average similarity score between every possible pair of recommendations
+		           for a given user. Higher means more diverse.
+		Novelty:   Average popularity rank of recommended items. Higher means more novel.
+		```
+
+		```
+		We recommend:
+		Suburban Commando (1991) 2.7896125
+		Candyman: Farewell to the Flesh (1995) 2.7879963
+		Salesman (1969) 2.786376
+		Maze Runner, The (2014) 2.78613
+		Heavy (1995) 2.7853022
+		Coal Miner's Daughter (1980) 2.7840955
+		High Plains Drifter (1973) 2.7836945
+		Salsa (1988) 2.7833865
+		Beasts of No Nation (2015) 2.782932
+		Aguirre: The Wrath of God (Aguirre, der Zorn Gottes) (1972) 2.7823327
+
+		Using recommender  Random
+
+		Building recommendation model...
+		Computing recommendations...
+
+		We recommend:
+		Beavis and Butt-Head Do America (1996) 5
+		Gods Must Be Crazy, The (1980) 5
+		Seven (a.k.a. Se7en) (1995) 5
+		Reality Bites (1994) 5
+		Young Guns (1988) 5
+		Fear and Loathing in Las Vegas (1998) 5
+		Pet Sematary (1989) 5
+		Ghostbusters (a.k.a. Ghost Busters) (1984) 5
+		Requiem for a Dream (2000) 5
+		Herbie Rides Again (1974) 5
+		```
+	+ Autoencoders for recommendations ("autorec")
+		+ paper autorec.
+
+	+ Clickstream recommendation with RNN
+		+ Session-based recommendation (ICLR'16)
+
+	+ GRU4Rec (gated recurrent unit)
+		+ Architecture:
+			* input layer (one-hot encoded item) 
+				-> embedding layer 
+					-> gru layers
+						-> feedforward layers
+							-> output scores on items
+		+ Twists:
+			+ session-parallel mini-batches
+			+ sampling the output
+			+ ranking loss
+
+	+ Deep matrix factorization:
+		+ paper DeepFM (IJCAI'17) = blending of factorization machine + deep neural net.
+
+	+ More emerging tech:
+		+ word2vec
+			+ string = "to boldly go where no one has"
+			+ string -> embedding layer -> hidden layer -> softmax -> "gone"
+
+		+ extending word2vec
+			+ songs = song1, song2, song3, songn
+			+ songs -> mbedding layer -> hidden layer -> softmax -> songk
+
+		+ 3D CNN for session-based recs.
+			+ descriptions vs. categories vs. clicks (time)
+
+
+
 
 ## Section 10: Scaling it Up 
 
