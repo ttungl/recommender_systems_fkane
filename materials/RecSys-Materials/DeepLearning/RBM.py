@@ -7,6 +7,22 @@ Updated on Sun Dec 1 08:32:13 2019
 @modified: Saurabh
 """
 
+# visibleDimensions: the product of num of movies and how many distinct rating values you have.
+
+# epochs: how many iterations on the forward and backward passes 
+#         while we try to minimize the error between our actual rating values
+#         and the reconstructed predicted values, that's numTimes we'll train 
+#         our RBM across all of the users in our training data 
+#         in hope that it will converge on a good set of weights and biases 
+#         that can be used for future predictions.
+
+# hiddenDimensions: num hidden neurons in the system which can be small compared to the num of visible neurons. 
+    
+# learningRate: controls how quickly we attempt to converge on each iteration.
+
+# batchSize: controls how many users we process at a time while training.
+
+
 import numpy as np
 import tensorflow as tf
 
@@ -15,14 +31,19 @@ class RBM(object):
     def __init__(self, visibleDimensions, epochs=20, hiddenDimensions=50, ratingValues=10, learningRate=0.001, batchSize=100):
 
         self.visibleDimensions = visibleDimensions
-        self.epochs = epochs
+        self.epochs = epochs 
         self.hiddenDimensions = hiddenDimensions
         self.ratingValues = ratingValues
         self.learningRate = learningRate
         self.batchSize = batchSize
         
-                
-    def Train(self, X):
+    # X: is 2-D array that has a row of rating values for every user. 
+    # These rating values are flatten into binary values. 
+    # Input array contains a row of every user and 
+    # every row contains binary data for the number of movies times
+    # the 10 possible rating values we have.  
+          
+    def Train(self, X): 
 
         for epoch in range(self.epochs):
             np.random.shuffle(X)
@@ -30,7 +51,7 @@ class RBM(object):
             trX = np.array(X)
             for i in range(0, trX.shape[0], self.batchSize):
                 epochX = trX[i:i+self.batchSize]
-                self.MakeGraph(epochX)
+                self.MakeGraph(epochX) # contains the RBA model 
 
             print("Trained epoch ", epoch)
 
