@@ -1096,10 +1096,10 @@
 ## Section 12: Case Studies
 	+ YouTube:
 		top-N <-- Knn index <===video vectors=== softmax ---> classif. prob.
-			|					|
+			    |				|
 			user vector<-- ReLU -------------
-						ReLU
-						ReLU
+					ReLU
+					ReLU
 			watch_vector	search_token_vector geoinfo	age  	gender ...
 
 ## Section 13: Hybrid Approach 
