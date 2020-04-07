@@ -1067,14 +1067,40 @@
 		+ 3D CNN for session-based recs.
 			+ descriptions vs. categories vs. clicks (time)
 
-
-
-
 ## Section 10: Scaling it Up 
+	+ Apache Spark
+	+ amazon DSSTNE
 
 ## Section 11: Real-World Challenges of Recommender Systems 
+	+ Cold-start: new user solutions
+		+ use implicit data
+		+ use cookies (carefully)
+		+ geo-ip
+		+ recommend top-sellers or promotions
+		+ interview the user.
+		+ use content-based attributes
+		+ map attributes to latent features (LearnAROMA)
+		+ random exploration.
+	+ stoplist:
+		+ adult-oriented content
+		+ vulgarity
+		+ legally prohibited topics
+		+ terrorism/political extremism
+		+ bereavement/medical
+		+ drug use
+		+ religion
+	+ Never build a RecSys based on Image Clicks.
+	+ Temporal effects, seasonality.
+
 
 ## Section 12: Case Studies
+	+ YouTube:
+		top-N <-- Knn index <===video vectors=== softmax ---> classif. prob.
+					|								|
+					user vector<-- ReLU -------------
+									ReLU
+									ReLU
+					watch_vector	search_token_vector geoinfo	age  	gender ...
 
 ## Section 13: Hybrid Approach 
 
