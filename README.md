@@ -938,7 +938,6 @@
 	+ Sparse Linear Methods (SLIM)
 		+ Paper: SLIM sparse linear methods for top-N recommender systems.
 
-
 ## Section 8: Intro to Deep Learning
 	+ Autodiff: is what tensorflow uses under the hood to implement its gradient descent.
 		+ As the computer calculates the partial derivatives of the loss function, it tweaked in scalar form.
@@ -967,6 +966,62 @@
 			+ Still fundamentally a calculus trick.
 			+ tensorflow used.
 
+	+ backpropagation:
+		+ For each training set, compute the output error for the weights that we have currently in place for each connection between each artificial neuron. Then we take the error that is computed at the end of the neural network and back propagate it down to the other direction through the neural network backwards. In that way, we can distribute error back through each connection all the way back to the inputs using the weights that we are currently using at this training step. We take the error information to tweak the weights through gradient descent to get a better value on the next pass, which is called an epoch of our training passes.
+		+ Sum up:
+			+ Run a set of weights.
+			+ Measure the errors.
+			+ Back propagate the error using those weights.
+			+ Tune things using gradient descent, and try again until the system converges. 
+
+	+ Activation functions (rectifier).
+		+ Sigmoid, Logistic, tangent, ELU, ReLU, leaky ReLU, Noisy ReLU, etc.
+			+ Sigmoid, Logistic, Tanh: 
+				+ Scales everything from 0 to 1 for sigmoid and logistic, and scales -1 to 1 for tanh/hyperbolic tangent. 
+				+ Output changes slowly for extreme high/low input values, the change of output value becomes very small => The vanishing gradient problem.
+				+ computationally expensive.
+				+ Tanh is preferred over sigmoid.
+			+ ReLU (Rectified Linear Unit)
+				+ fast compute.
+				+ But when inputs are zeros or negative => The "Dying ReLU" problem.
+			+ Leaky ReLU:
+				+ Solves "dying ReLU" by introducing a slightly negative slope below 0.
+			+ Parametric ReLU
+				+ ReLU but the slope in the negative part is learned via backpropagation. [complicated!!]
+			+ Exponential Linear Unit (ELU):
+			+ Swish: performs well with very deep networks (40+ layers)
+			+ Maxout: 
+				+ outputs the max of the inputs.
+				+ ReLU is a special case of maxout.
+				+ Not practical bcos doubles parameters that need to be trained.
+
+		+ Notes: Step functions don't work with gradient descent as no derivative.
+		
+	+ Optimization functions:
+		+ Momentum optimization: introduces a momentum to the descent, so it slows down as things start to flatten and speeds up as the slope is steep.
+				
+		+ Nesterov Accelerated gradient: a small tweak on momentum optimization: it computes momentum based on the gradient slightly ahead of the current state.
+
+		+ RMSProp: adaptive learning rate to help point toward the minimum.
+		
+		+ Adam: adaptive moment estimation: momentum + RMSProp.
+
+	+ Avoiding Overfitting:
+		+ Early stopping (when performance starts dropping)
+		+ Regularization terms added to cost function during training.
+		+ Dropout - ignore percentage (i.e. 50%) of all neurons randomly at each training step.
+			+ works surprisingly well.
+			+ forces your model to spread out its learning.
+	
+	+ Tuning your topology:
+		+ Trial & Error
+			+ Evaluate a smaller network with less neurons in the hidden layers.
+			+ Evaluate a larger net with more layers:
+				+ Try reducing the size of each layer as you progress.
+		+ More layers can yield faster learning.
+		+ Use more layers and neurons than you need, don't care because you use early stopping.
+		+ Use "model zoos".
+
 	+ Softmax:
 		+ used for classification
 			+ Given a score for each class
@@ -975,10 +1030,33 @@
 			+ h_theta(x) = 1 / (1 + exp(-theta^transpose * x))
 				+ x is a vector of input values.
 				+ theta is a vector of weights.
+		+ used on the final output layer of a multiple classification problem.
+			+ basically converts outputs from logits to probabilities of each classification.
+			+ can't produce more than one label for something (but sigmoid can.)
+			+ don't worry about the actual function for the exam.
+
+	+ Choosing an activation function.
+		+ for multiple classification, use softmax on the output layer.
+		+ RNN's do well with Tanh.
+		+ For everything else:
+			+ Start with ReLU.
+			+ If need to do better, Leaky ReLU.
+			+ Last resort: PReLU, Maxout.
+			+ Swish for really deep nets. 
+
 	+ In review:
 		+ Gradient descent is an algorithm for minimizing error over multiple steps. In other word, it aims to minimize the loss through tweaking the weights and biases.
 		+ Autodiff is a calculus trick for finding the gradients in gradient descent.
 		+ Softmax is a function for choosing the most probable classification given several input values.
+
+	+ Tensorflow (TF):
+		+ Overview:
+			+ General purposes, not specific for neural networks. It's more an architecture for executing a graph of numerical operations.
+			+ TF can optimize the processing of that graph, and distribute its processing across a network (CPUs, GPUs, clusters at scale).
+			+ TF can work on GPUs, while Apache Spark doesn't.
+		+ TF Basics:
+			
+
 
 
 ## Section 9: Deep Learning for Recommender Systems
