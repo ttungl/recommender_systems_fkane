@@ -1055,7 +1055,43 @@
 			+ TF can optimize the processing of that graph, and distribute its processing across a network (CPUs, GPUs, clusters at scale).
 			+ TF can work on GPUs, while Apache Spark doesn't.
 		+ TF Basics:
-			
+			```
+			import tensorflow as tf
+			a = tf.Variable(1, name="a")
+			b = tf.Variable(2, name="b")
+			f = a + b
+			tf.print(f)
+			```
+
+			```
+			The bias term can be added onto the result of the matrix multiplication.
+			output = tf.matmul(previous_layer, layer_weights) + layer_biases ## y = x*w + b
+
+			```
+			+ creating a neural net with tensorflow.
+				+ Load up our training and testing data.
+				+ Construct a graph describing our neural net.
+					+ Use "placeholders" for the `input data` and `target labels`.
+						This way we can use the same graph for training + testing.
+					+ Use "variables" for the learned weights for each connection and learned biases for each neuron.
+						Variables are preserved across runs within a tensorflow session.
+				+ Associate an optimizer (ie gradient descent) to the network.
+				+ Run the optimizer with your training data.
+				+ Evaluate your trained network with your testing data.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
