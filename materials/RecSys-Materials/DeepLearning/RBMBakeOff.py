@@ -6,7 +6,8 @@ Created on Thu May  3 11:11:13 2018
 """
 
 from MovieLens import MovieLens
-from RBMAlgorithm import RBMAlgorithm
+# from RBMAlgorithm import RBMAlgorithm
+from RBMAlgorithmT import RBMAlgorithm
 from surprise import NormalPredictor
 from Evaluator import Evaluator
 

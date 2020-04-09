@@ -22,7 +22,7 @@ if __name__ == "__main__":
     lines = spark.read.option("header", "true").csv("../ml-latest-small/ratings.csv").rdd
 
     ratingsRDD = lines.map(lambda p: Row(userId=int(p[0]), movieId=int(p[1]),
-                                         rating=float(p[2]), timestamp=int(p[3])))
+                                          rating=float(p[2]), timestamp=int(p[3])))
     
     ratings = spark.createDataFrame(ratingsRDD)
     
