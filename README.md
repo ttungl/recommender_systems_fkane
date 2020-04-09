@@ -1078,6 +1078,29 @@
 				+ Associate an optimizer (ie gradient descent) to the network.
 				+ Run the optimizer with your training data.
 				+ Evaluate your trained network with your testing data.
+			+ Make sure your features are normalized.
+				+ neural nets work best if your input data is normalized.
+					+ That is zero mean and unit variance.
+					+ The real goal is that every input feature is comparable in terms of magnitude.
+				+ scikit-learn standardscaler can do this.
+				 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
